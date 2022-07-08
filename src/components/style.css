@@ -1,0 +1,10 @@
+.banner{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 200px;
+    background-image: url("../assets/gironde.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
