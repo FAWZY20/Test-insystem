@@ -1,10 +1,67 @@
-.banner{
-    text-align: center;
+#accueil {
+    margin-top: 50px;
+}
+
+.title h1 {
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.title span {
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+}
+
+.title p{
+    font-size: 35px;
+    font-weight: 500;
+    color: black;
+}
+
+
+.temperature {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.block-temperature {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #C5AD97;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.block-temperature-result {
+    margin-top: 20px;
+    border-top: 1px solid black;
+}
+
+.block-temperature-result p {
+    height: 70px;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.block-temperature-date {
+    font-size: 20px;
+}
+
+.block-heure {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #1552a7;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 200px;
-    background-image: url("../assets/gironde.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
