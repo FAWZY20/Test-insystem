@@ -10,12 +10,13 @@
 }
 
 .title span {
+    text-decoration: underline;
     font-weight: 500;
     font-size: 18px;
     color: black;
 }
 
-.title p{
+.title p {
     font-size: 35px;
     font-weight: 500;
     color: black;
@@ -29,6 +30,7 @@
 }
 
 .block-temperature {
+    box-shadow: 1px 1px 12px #555;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -55,6 +57,7 @@
 }
 
 .block-heure {
+    box-shadow: 1px 1px 12px #555;
     padding-top: 10px;
     font-weight: 500;
     font-size: 20px;
@@ -65,3 +68,21 @@
     border-radius: 10px;
     margin-bottom: 10px;
 }
+
+.btn-temperature{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-temperature Button:hover{
+    color: black;
+    text-decoration: none;
+}
+
+.btn-temperature Button{
+    color: black;
+    text-decoration: none;
+}
+

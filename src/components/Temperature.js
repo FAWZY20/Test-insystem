@@ -3,6 +3,7 @@ import { useState } from 'react';
 import api from '../api/api';
 import './style.css';
 import icon from '../assets/icon.png';
+import Button from 'react-bootstrap/Button';
 
 
 function Temperature() {
@@ -20,6 +21,14 @@ function Temperature() {
         const stringdays = listdays[date.getDay()]
         const days = date.getDay()
         return stringdays + " " + days + " " + month
+    }
+
+    const timeTransform = (e) => {
+        const date = new Date(e)
+        const houre = date.getHours()
+        const minute = date.getMinutes()
+        return houre + "H" + minute
+
     }
 
     useEffect(() => {
@@ -53,6 +62,14 @@ function Temperature() {
                         </div>
                     ))
                 }
+            </div>
+            <div className='btn-temperature'>
+                <div>
+                    <Button variant="link">Voir en format Graphique</Button>
+                </div>
+                <div>
+                    <Button variant="link">Voir plus de temperature</Button>
+                </div>
             </div>
         </div>
     );
