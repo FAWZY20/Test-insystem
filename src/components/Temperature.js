@@ -28,7 +28,7 @@ function Temperature() {
         datasets: [
             {
                 label: "Temperature des cours d'eau du "+ urlDate +"",
-                data: temperature.map(temp => temp.code_unite),
+                data: temperature.map(temp => temp.resultat),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
