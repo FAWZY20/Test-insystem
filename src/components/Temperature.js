@@ -21,14 +21,14 @@ function Temperature() {
     const year = date.getFullYear()
     const day = date.getDate()
     const month = date.getMonth()
-    const urlDate = year + "-" + month + "-" + day
-        ;
+    const urlDate = year + "-" + month + "-" + day;
+
     const data = {
-        labels: [temperature.heure_mesure_temp],
+        labels: temperature.map(temp => temp.heure_mesure_temp),
         datasets: [
             {
-                label: "Temperature des cours d'eau",
-                data: [temperature.code_unite],
+                label: "Temperature des cours d'eau du "+ urlDate +"",
+                data: temperature.map(temp => temp.code_unite),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
