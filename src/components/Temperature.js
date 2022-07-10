@@ -11,6 +11,8 @@ import { Chart as ChartJS } from 'chart.js/auto'
 
 function Temperature() {
     const [temperature, setTemperature] = useState([])
+
+    //animation affichage d'element 
     const [show, setShow] = useState(false);
     const [showGraph, setShowGraph] = useState(false);
 
@@ -20,24 +22,18 @@ function Temperature() {
     const day = date.getDate()
     const month = date.getMonth()
     const urlDate = year + "-" + month + "-" + day
-    console.log(urlDate);
-
+        ;
     const data = {
-        labels: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+        labels: [temperature.heure_mesure_temp],
         datasets: [
             {
                 label: "Temperature des cours d'eau",
-                data: [10, 20, 30, 20, 20, 20, 20],
+                data: [temperature.code_unite],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }
-        ],
-        borderWidth: 1
-    }
-
-    const option = {
-        maintainAspectRatio: false,
+        ]
     }
 
     const fetchTemperature = async () => {
@@ -130,15 +126,15 @@ function Temperature() {
             </div>
             {showGraph &&
                 <div className='graph'>
-                    <Line data={data} option={option} />
+                    <Line data={data} />
                 </div>
             }
             <div className='btn-temperature' >
                 <div>
-                    <Button variant="link" onClick={() => setShowGraph(prev => !prev)}>Voir le graphique</Button>
+                    <Button variant="link" onClick={() => setShowGraph(prev => !prev)}>{showGraph ? 'revenir à la version block' : 'Voir le graphique' }</Button>
                 </div>
                 <div>
-                    <Button variant="link" onClick={() => setShow(prev => !prev)}>Voir plus d'heure</Button>
+                    <Button variant="link" onClick={() => setShow(prev => !prev)}>{show ? "afficher moin d'heure" : "Voir plus d'heure"}</Button>
                 </div>
             </div>
         </div>
