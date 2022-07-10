@@ -5,12 +5,14 @@ import api from '../api/api';
 import './style.css';
 import icon from '../assets/icon.png';
 import triste from '../assets/triste.png';
-
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS } from 'chart.js/auto'
 
 
 function Temperature() {
     const [temperature, setTemperature] = useState([])
     const [show, setShow] = useState(false);
+    const [showGraph, setShowGraph] = useState(false);
 
     //jour actuel
     const date = new Date()
@@ -19,6 +21,24 @@ function Temperature() {
     const month = date.getMonth()
     const urlDate = year + "-" + month + "-" + day
     console.log(urlDate);
+
+    const data = {
+        labels: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+        datasets: [
+            {
+                label: "Temperature des cours d'eau",
+                data: [10, 20, 30, 20, 20, 20, 20],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }
+        ],
+        borderWidth: 1
+    }
+
+    const option = {
+        maintainAspectRatio: false,
+    }
 
     const fetchTemperature = async () => {
         const { data } = await api.get(`/v1/temperature/chronique?code_departement=33&date_debut_mesure=${urlDate}`)
@@ -53,32 +73,33 @@ function Temperature() {
             </div>
             <div className='temperature'>
                 <div className='temperature-ext'>
-                    {
+                    {showGraph == false &&
                         temperature.length !== 0 ?
-                            temperature.slice(0, 5).map((temp) => (
-                                <div className=' col-lg-2'>
-                                    <div className='block-heure' >
-                                        <p>{temp.heure_mesure_temp}</p>
+                        temperature.slice(0, 5).map((temp) => (
+                            <div className=' col-lg-2'>
+                                <div className='block-heure' >
+                                    <p>{temp.heure_mesure_temp}</p>
+                                </div>
+                                <div className='block-temperature' >
+                                    <div>
+                                        <p><span>Station:</span> {temp.libelle_station} </p>
                                     </div>
-                                    <div className='block-temperature' >
-                                        <div>
-                                            <p><span>Station:</span> {temp.libelle_station} </p>
-                                        </div>
-                                        <div className='block-temperature-icon' >
-                                            <img src={icon} width="130" height="130" alt='' />
-                                        </div>
-                                        <div className='block-temperature-result' >
-                                            <p>{temp.code_unite}{temp.symbole_unite}</p>
-                                        </div>
-                                        <div className='block-temperature-date' >
-                                            <p>{dateTransform(temp.date_mesure_temp)}</p>
-                                        </div>
+                                    <div className='block-temperature-icon' >
+                                        <img src={icon} width="130" height="130" alt='' />
+                                    </div>
+                                    <div className='block-temperature-result' >
+                                        <p>{temp.code_unite}{temp.symbole_unite}</p>
+                                    </div>
+                                    <div className='block-temperature-date' >
+                                        <p>{dateTransform(temp.date_mesure_temp)}</p>
                                     </div>
                                 </div>
-                            )) :
-                            <div className='msg-error' >
-                                <p>Aucune mesure est disponible<br /> pour ce jour <br /> <span><img src={triste} height="50" width="50" alt='icon triste' /></span> </p>
                             </div>
+                        )) :
+                        showGraph == false &&
+                        <div className='msg-error' >
+                            <p>Aucune mesure est disponible<br /> pour ce jour <br /> <span><img src={triste} height="50" width="50" alt='icon triste' /></span> </p>
+                        </div>
                     }
                 </div>
                 <div className='temperature-plus'>
@@ -107,9 +128,14 @@ function Temperature() {
                     }
                 </div>
             </div>
+            {showGraph &&
+                <div className='graph'>
+                    <Line data={data} option={option} />
+                </div>
+            }
             <div className='btn-temperature' >
                 <div>
-                    <Button variant="link">Voir le graphique</Button>
+                    <Button variant="link" onClick={() => setShowGraph(prev => !prev)}>Voir le graphique</Button>
                 </div>
                 <div>
                     <Button variant="link" onClick={() => setShow(prev => !prev)}>Voir plus d'heure</Button>

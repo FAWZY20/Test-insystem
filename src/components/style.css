@@ -114,3 +114,9 @@
     font-size: 40px;
     font-weight: bold;
 }
+.graph{
+    box-shadow: 1px 1px 12px #555;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
