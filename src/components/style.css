@@ -90,14 +90,19 @@
     margin-bottom: 10px;
 }
 
-.btn-temperature {
+.btn-temperature{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
-.btn-temperature Button {
-    font-weight: bold;
+.btn-temperature Button:hover{
+    color: black !important;
+    text-decoration: none;
+}
+
+.btn-temperature Button{
     color: black !important;
     text-decoration: none;
 }

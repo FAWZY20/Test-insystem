@@ -7,6 +7,7 @@ import icon from '../assets/icon.png';
 import triste from '../assets/triste.png';
 
 
+
 function Temperature() {
     const [temperature, setTemperature] = useState([])
     const [show, setShow] = useState(false);
@@ -30,6 +31,14 @@ function Temperature() {
         const stringdays = date.toLocaleString('default', { weekday: 'long' })
         const days = date.getDate()
         return stringdays + " " + days + " " + month
+    }
+
+    const timeTransform = (e) => {
+        const date = new Date(e)
+        const houre = date.getHours()
+        const minute = date.getMinutes()
+        return houre + "H" + minute
+
     }
 
     useEffect(() => {
@@ -80,6 +89,9 @@ function Temperature() {
                                     <p>{temp.heure_mesure_temp}</p>
                                 </div>
                                 <div className='block-temperature' >
+                                    <div>
+                                        <p><span>Station:</span> {temp.libelle_station} </p>
+                                    </div>
                                     <div className='block-temperature-icon' >
                                         <img src={icon} width="130" height="130" alt='' />
                                     </div>
